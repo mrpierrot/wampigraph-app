@@ -13,6 +13,7 @@ package com.casusludi.wampigraph.app.engine
 		private var _data:Wampum;
 		private var _rawRendering:WampumRawRendering;
 		public var alive:Boolean;
+		public var posX:Number = 0;
 		
 		public function WampumRendering(pWampum:Wampum) 
 		{

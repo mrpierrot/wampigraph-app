@@ -22,6 +22,8 @@ package com.casusludi.wampigraph.app
 		public static var _y:Number;
 		public static var _stanbByManager:StandByManager;
 		public static var main:Main;
+		public static var FPS:int = 60;
+		
 		
 		public function Globals() 
 		{

@@ -42,9 +42,9 @@ package com.casusludi.wampigraph.app.views
 			_height = pHeight;
 		}
 		
-		public function update():void 
+		public function update(rate:Number=1):void 
 		{
-			_engine.update();
+			_engine.update(rate);
 		}
 		
 		public function init():void 

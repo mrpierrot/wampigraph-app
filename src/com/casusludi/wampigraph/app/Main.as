@@ -7,8 +7,11 @@ package com.casusludi.wampigraph.app
 	import flash.display.Sprite;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
+	import flash.events.TimerEvent;
 	import flash.filesystem.File;
 	import com.casusludi.wampigraph.app.views.ScreenType;
+	import flash.utils.getTimer;
+	import flash.utils.Timer;
 	import net.croquepixel.lib.core.AbstractMain;
 	import net.croquepixel.lib.display.screen.ScreenManager;
 	import net.croquepixel.lib.log.DefaultLoggerSystem;
@@ -24,6 +27,7 @@ package com.casusludi.wampigraph.app
 		
 		private var _engine:Engine;
 		private var _screenManager:ScreenManager;
+		private var _lastTime:Number;
 		
 		public function Main():void 
 		{
@@ -52,13 +56,22 @@ package com.casusludi.wampigraph.app
 			
 			_screenManager.show(ScreenType.ENGINE);
 			
+			_lastTime = getTimer();
 			this.stage.addEventListener(Event.RESIZE, _resizeHandler);
-			this.addEventListener(Event.ENTER_FRAME, _enterFrameHandler);
+			//this.addEventListener(Event.ENTER_FRAME, _enterFrameHandler);
+			var timer:Timer = new Timer(1000 / Globals.FPS);
+			timer.addEventListener(TimerEvent.TIMER, _enterFrameHandler);
+			timer.start();
 		}
 		
-		private function _enterFrameHandler(e:Event):void 
+		private function _enterFrameHandler(e:TimerEvent):void 
 		{
-			if (_screenManager.currentScreen)_screenManager.currentScreen.update();
+			var newTime:Number = getTimer();
+			var deltaTime:Number = newTime - _lastTime;
+			var rate:Number = Globals.FPS * deltaTime * 0.001;
+			if (_screenManager.currentScreen)_screenManager.currentScreen.update(rate);
+			_lastTime = newTime;
+			e.updateAfterEvent();
 		}
 		
 		private function _resizeHandler(e:Event=null):void 
@@ -67,7 +80,7 @@ package com.casusludi.wampigraph.app
 		}
 		
 		public function updateSize():void {
-			Globals._stageWidth = this.stage.stageWidth;
+			/*Globals._stageWidth = this.stage.stageWidth;
 			Globals._stageHeight = this.stage.stageHeight;
 			var scale:Number = _screenManager.rendering.scaleX = _screenManager.rendering.scaleY = MathUtils.scaleBox(Globals.originalWidth,Globals.originalHeight,this.stage.stageWidth,this.stage.stageHeight);
 			_screenManager.rendering.x = (this.stage.stageWidth - _screenManager.width*scale)*0.5;
@@ -76,7 +89,7 @@ package com.casusludi.wampigraph.app
 			Globals._height = _screenManager.rendering.height;
 			Globals._scale = scale;
 			Globals._x = _screenManager.rendering.x;
-			Globals._y = _screenManager.rendering.y;
+			Globals._y = _screenManager.rendering.y;*/
 	
 		}
 		

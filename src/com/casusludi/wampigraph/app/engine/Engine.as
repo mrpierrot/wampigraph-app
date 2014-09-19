@@ -13,15 +13,16 @@ package com.casusludi.wampigraph.app.engine {
 		private var _stock:Vector.<WampumRendering>;
 		private var _stockIndex:int;
 		private var _renderingList:Vector.<WampumRendering>;
-		private var _speedXPerUpdate:int;
+		private var _speedXPerUpdate:Number;
 		private var _width:int;
 		private var _height:int;
+		private var _padding:int = 40;
 		
 		public function Engine(pWidth:int,pHeight:int) 
 		{
 			_width = pWidth;
 			_height = pHeight;
-			_speedXPerUpdate = 2;
+			_speedXPerUpdate = 0.5;
 			_rendering = new Sprite();
 			_renderingList = new Vector.<WampumRendering>();
 			_stock = new Vector.<WampumRendering>();
@@ -43,14 +44,17 @@ package com.casusludi.wampigraph.app.engine {
 			return _rendering;
 		}
 		
-		public function update():void {
+		public function update(rate:Number=1):void {
 			var item:WampumRendering;
 			var i:int, c:int;
+			var speed:Number = _speedXPerUpdate * rate;
 			for (i = 0, c = _renderingList.length; i < c; i++) {
 				item = _renderingList[i];
 				item.alive = item.x + item.width > 0;
 				if (item.alive) {
-					item.x -= _speedXPerUpdate;
+					item.posX -= speed;
+					item.x = int(item.posX + 0.5);
+					
 				}else {
 					_rendering.removeChild(item);
 					_renderingList.splice(i, 1);
@@ -62,13 +66,11 @@ package com.casusludi.wampigraph.app.engine {
 				if (item.x+item.width<_width+100) {
 					_stockIndex = (_stockIndex + 1) % _stock.length;
 					var newItem:WampumRendering = _stock[_stockIndex];
-					newItem.x = item.x + item.width;
+					newItem.posX = newItem.x = item.x + item.width+_padding;
 					_renderingList.push(newItem);
 					_rendering.addChild(newItem);
 				}
 			}
-			
-
 			
 		}
 	}

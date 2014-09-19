@@ -5,13 +5,13 @@
     <movie outputType="Application" />
     <movie input="" />
     <movie path="bin\wampigraphapp.swf" />
-    <movie fps="30" />
-    <movie width="800" />
-    <movie height="600" />
+    <movie fps="60" />
+    <movie width="1920" />
+    <movie height="1080" />
     <movie version="14" />
     <movie minorVersion="0" />
     <movie platform="AIR" />
-    <movie background="#FFFFFF" />
+    <movie background="#282828" />
     <movie preferredSDK="Flex 4.6.0, AIR 14.0;4.6.0, 14.0;" />
   </output>
   <!-- Other classes to be compiled into your SWF -->

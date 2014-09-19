@@ -13,10 +13,10 @@ package com.casusludi.wampigraph.app.assets
 			
 		}
 
-		[Embed(source="pearlFaceA.png")]
+		[Embed(source="pearlFaceAv2.png")]
 		public static const PEARL_FACE_A:Class;
 		
-		[Embed(source="pearlFaceB.png")]
+		[Embed(source="pearlFaceBv2.png")]
 		public static const PEARL_FACE_B:Class;
 		
 		
