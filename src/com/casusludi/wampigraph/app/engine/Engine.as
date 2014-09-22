@@ -11,6 +11,7 @@ package com.casusludi.wampigraph.app.engine {
 	{
 		private var _rendering:DisplayObjectContainer;
 		private var _stock:Vector.<WampumRendering>;
+		private var _waitingElements:Vector.<WampumRendering>;
 		private var _stockIndex:int;
 		private var _renderingList:Vector.<WampumRendering>;
 		private var _speedXPerUpdate:Number;
@@ -26,17 +27,16 @@ package com.casusludi.wampigraph.app.engine {
 			_rendering = new Sprite();
 			_renderingList = new Vector.<WampumRendering>();
 			_stock = new Vector.<WampumRendering>();
+			_waitingElements = new Vector.<WampumRendering>();
+			_stockIndex = 0;
 		}
 		
 		public function setWampums(pWampums:Vector.<Wampum>):void {
 			_renderingList.splice(0, int.MAX_VALUE);
-			_stock.splice(0, int.MAX_VALUE);
+			_waitingElements.splice(0, int.MAX_VALUE);
 			for (var i:int = 0, c:int = pWampums.length; i < c; i++) {
-				_stock.push(new WampumRendering(pWampums[i]));
+				_waitingElements.push(new WampumRendering(pWampums[i]));
 			}
-			_stockIndex = 0;
-			_renderingList.push(_stock[0]);
-			_rendering.addChild(_renderingList[0]);
 		}
 		
 		public function get rendering():DisplayObjectContainer 
@@ -61,17 +61,40 @@ package com.casusludi.wampigraph.app.engine {
 					c = _renderingList.length;
 				}
 			}
+			
 			if (c > 0) {
 				item = _renderingList[c - 1];
-				if (item.x+item.width<_width+100) {
-					_stockIndex = (_stockIndex + 1) % _stock.length;
-					var newItem:WampumRendering = _stock[_stockIndex];
-					newItem.posX = newItem.x = item.x + item.width+_padding;
-					_renderingList.push(newItem);
-					_rendering.addChild(newItem);
+				if (item.x + item.width < _width + 100) {
+					var newItem:WampumRendering = _createItem();
+					if(newItem)newItem.posX = newItem.x = item.x + item.width+_padding;
 				}
+			}else {
+				_createItem();
 			}
 			
+		}
+		
+		public function _createItem():WampumRendering {
+			var newItem:WampumRendering;
+			var stockSize:int = _stock.length;
+			// si on arrive au bout du stock de wampum à afficher et qu'il y a eu une mise à jour des wampums disponibles
+			if (stockSize <= _stockIndex + 1 && _waitingElements.length > 0 ) {
+				// alors on remplace le stock actuel par la mise à jour
+				_stock = _waitingElements.concat();
+				stockSize = _stock.length;
+				_stockIndex = 0;
+			}else {
+				// sinon on recupere le wampum suivant dans le stock
+				_stockIndex = (_stockIndex + 1) % stockSize;
+			}
+			// si le stock n'est pas vide
+			if (stockSize > 0) {
+				// alors on ajoute le wampum courant dans la riviere
+				newItem = _stock[_stockIndex];
+				_renderingList.push(newItem);
+				_rendering.addChild(newItem);
+			}
+			return newItem;
 		}
 	}
 }

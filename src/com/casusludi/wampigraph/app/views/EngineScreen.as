@@ -8,6 +8,8 @@ package com.casusludi.wampigraph.app.views
 	import flash.events.Event;
 	import flash.display.DisplayObject;
 	import flash.events.EventDispatcher;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 	import net.croquepixel.lib.display.screen.IScreen;
 	/**
 	 * ...
@@ -16,13 +18,24 @@ package com.casusludi.wampigraph.app.views
 	public class EngineScreen extends EventDispatcher implements IScreen
 	{
 		private var _engine:Engine;
-		private var _rendering:DisplayObjectContainer
+		private var _rendering:DisplayObjectContainer;
+		private var _timer:Timer;
 		private var _width:int;
 		private var _height:int;
 		
-		public function EngineScreen() 
+		public function EngineScreen(pUpdateTime:Number=60) 
 		{
 			_rendering = new Sprite();
+			_timer = new Timer(pUpdateTime * 1000);
+			_timer.addEventListener(TimerEvent.TIMER, _timerUpdateEngineHandler);
+		}
+		
+		private function _timerUpdateEngineHandler(e:TimerEvent):void 
+		{
+			cqpx_debug("EngineScreen::[ update river ]");
+			API.instance.getAllWampums(function(data:Vector.<Wampum>):void {
+				_engine.setWampums(data);
+			});
 		}
 		
 		
@@ -58,7 +71,7 @@ package com.casusludi.wampigraph.app.views
 		
 		public function onHide():void 
 		{
-			
+			_timer.stop();
 		}
 		
 		public function onHideComplete():void 
@@ -68,7 +81,7 @@ package com.casusludi.wampigraph.app.views
 		
 		public function onShow(pData:*):void 
 		{
-			
+			_timer.start();
 		}
 		
 		public function onShowComplete():void 
