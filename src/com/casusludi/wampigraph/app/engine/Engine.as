@@ -17,7 +17,7 @@ package com.casusludi.wampigraph.app.engine {
 		private var _speedXPerUpdate:Number;
 		private var _width:int;
 		private var _height:int;
-		private var _padding:int = 40;
+		private var _padding:int = 0;
 		
 		public function Engine(pWidth:int,pHeight:int) 
 		{
@@ -32,7 +32,6 @@ package com.casusludi.wampigraph.app.engine {
 		}
 		
 		public function setWampums(pWampums:Vector.<Wampum>):void {
-			_renderingList.splice(0, int.MAX_VALUE);
 			_waitingElements.splice(0, int.MAX_VALUE);
 			for (var i:int = 0, c:int = pWampums.length; i < c; i++) {
 				_waitingElements.push(new WampumRendering(pWampums[i]));

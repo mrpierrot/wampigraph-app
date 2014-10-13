@@ -62,7 +62,8 @@ package com.casusludi.wampigraph.app.views
 		
 		public function init():void 
 		{	
-			_engine = new Engine(_width,_height);
+			_engine = new Engine(_width, _height);
+			_engine.rendering.y = 20;
 			_rendering.addChild(_engine.rendering);
 			API.instance.getAllWampums(function(data:Vector.<Wampum>):void {
 				_engine.setWampums(data);

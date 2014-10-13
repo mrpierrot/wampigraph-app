@@ -18,7 +18,8 @@ package com.casusludi.wampigraph.app.net
 		public function API() 
 		{
 			_service = new JSONService();
-			_service.register("allWampums", "http://wampigraph.local/external/api/drawing/list-all-wampums");
+			//_service.register("allWampums", "http://wampigraph.local/external/api/drawing/list-all-wampums");
+			_service.register("allWampums", "http://wampigraph.net/external/api/drawing/list-all-wampums");
 		}
 		
 		public function getAllWampums(pCallback:Function):void {

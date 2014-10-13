@@ -54,6 +54,7 @@
   <!-- SWC Libraries -->
   <libraryPaths>
     <element path="libext\cqpxlib.air.swc" />
+    <element path="libext\textutils.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
