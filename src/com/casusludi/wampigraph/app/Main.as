@@ -43,7 +43,7 @@ package com.casusludi.wampigraph.app
 			// initialise le gestionnaire de log par defaut
 			DefaultLoggerSystem.instance.init(this);	
 			// ajoute l'enregistement des logs dans des fichiers
-			//DefaultLoggerSystem.instance.manager.addLoggerOut(new FileLoggerOut(File.desktopDirectory));
+			DefaultLoggerSystem.instance.manager.addLoggerOut(new FileLoggerOut(File.applicationStorageDirectory));
 
 			
 			// init du gestionnaire d'écran

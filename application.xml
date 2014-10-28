@@ -1,27 +1,27 @@
-<?xml version="1.0" encoding="utf-8" ?> 
+﻿<?xml version="1.0" encoding="utf-8"?>
 <application xmlns="http://ns.adobe.com/air/application/14.0">
-	
-	<id>com.casusludi.wampigraph.app.wampigraphapp</id> 
-	<versionNumber>1.0</versionNumber> 
-	<filename>wampigraphapp</filename> 
-	
-	<name>wampigraph-app</name> 
-	<description></description> 
-	<copyright></copyright> 
-	
-	<initialWindow> 
-		<title>wampigraph-app</title> 
-		<content>wampigraphapp.swf</content> 
-		<systemChrome>standard</systemChrome> 
-		<transparent>false</transparent> 
-		<visible>true</visible> 
-		<minimizable>true</minimizable> 
-		<maximizable>true</maximizable> 
-		<resizable>true</resizable> 
-	</initialWindow> 
-	
-	<!-- 
+  <id>com.casusludi.wampigraph.app.wampigraphapp</id>
+  <versionNumber>1.1</versionNumber>
+  <filename>wampigraphapp</filename>
+  <name>wampigraph-app</name>
+  <initialWindow>
+    <title>wampigraph-app</title>
+    <content>wampigraphapp.swf</content>
+    <systemChrome>standard</systemChrome>
+    <transparent>false</transparent>
+    <visible>true</visible>
+    <minimizable>true</minimizable>
+    <maximizable>true</maximizable>
+    <resizable>true</resizable>
+  </initialWindow>
+  <!-- 
 	More options:
 	http://livedocs.adobe.com/flex/3/html/File_formats_1.html#1043413
 	-->
+  <icon>
+    <image32x32>icons/wampigraphapp32.png</image32x32>
+    <image36x36>icons/wampigraphapp36.png</image36x36>
+    <image48x48>icons/wampigraphapp48.png</image48x48>
+    <image100x100>icons/wampigraphapp100.png</image100x100>
+  </icon>
 </application>

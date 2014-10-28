@@ -38,7 +38,7 @@ package com.casusludi.wampigraph.app.engine
 			this.addChild(triangle);
 			triangle.x = -14;
 			triangle.y = bitmap.height + 15;
-			var message:String = pWampum.title+ " - " + pWampum.user.firstname+" " + pWampum.user.lastname;
+			var message:String = "<i>"+pWampum.title+ "</i>  -  " + pWampum.user.firstname+" " + pWampum.user.lastname;
 			_label = TextFactory.createText(message, _rawRendering.width, 28, 0xFFFFFF, "Bebas Neue", "left");
 			_label.embedFonts = false;
 			_label.x = triangle.x + triangle.width + 20;
