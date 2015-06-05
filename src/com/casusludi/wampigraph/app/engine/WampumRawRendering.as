@@ -20,6 +20,7 @@ package com.casusludi.wampigraph.app.engine {
 			var faceHeight:int = _faceA.height > _faceB.height?_faceA.height:_faceB.height;
 			var w:int = faceWidth * _raw.cols;
 			var h:int = faceHeight * _raw.rows;
+			//super(w, h);
 			super(w, h);
 			var char:String;
 			var face:BitmapData;
@@ -34,9 +35,6 @@ package com.casusludi.wampigraph.app.engine {
 			}
 			
 		}
-		
-		
-		
 	}
 
 }

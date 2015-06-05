@@ -25,6 +25,7 @@ package com.casusludi.wampigraph.app.model
 				if (!users.hasOwnProperty(wampum.user_id)) {
 					users[wampum.user_id] = new User(wampum.user_id,wampum.firstname,wampum.lastname);
 				}
+
 				ret.push(
 					new Wampum(
 						wampum.id,

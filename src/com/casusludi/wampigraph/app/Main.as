@@ -38,7 +38,7 @@ package com.casusludi.wampigraph.app
 		{
 			this.stage.scaleMode = StageScaleMode.NO_SCALE;
 			
-		
+		trace(File.applicationStorageDirectory);
 			
 			// initialise le gestionnaire de log par defaut
 			DefaultLoggerSystem.instance.init(this);	
@@ -49,7 +49,7 @@ package com.casusludi.wampigraph.app
 			// init du gestionnaire d'écran
 			//_screenManager = new ScreenManager(this.stage.stageWidth, this.stage.stageHeight);
 			_screenManager = new ScreenManager(1920, 1080);
-			_screenManager.register(new EngineScreen());
+			_screenManager.register(new EngineScreen(3600));
 			this.addChild(_screenManager.rendering);
 			updateSize();
 			

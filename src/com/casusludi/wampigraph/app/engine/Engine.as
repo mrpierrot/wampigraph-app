@@ -34,7 +34,12 @@ package com.casusludi.wampigraph.app.engine {
 		public function setWampums(pWampums:Vector.<Wampum>):void {
 			_waitingElements.splice(0, int.MAX_VALUE);
 			for (var i:int = 0, c:int = pWampums.length; i < c; i++) {
+				try{
 				_waitingElements.push(new WampumRendering(pWampums[i]));
+				}catch (e:Error) {
+					//cqpx_fatal("error on this wampum : "+pWampums[i]);
+					//cqpx_fatal(e.getStackTrace());
+				}
 			}
 		}
 		

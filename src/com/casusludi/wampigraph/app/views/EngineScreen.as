@@ -32,7 +32,7 @@ package com.casusludi.wampigraph.app.views
 		
 		private function _timerUpdateEngineHandler(e:TimerEvent):void 
 		{
-			cqpx_debug("EngineScreen::[ update river ]");
+			//cqpx_debug("EngineScreen::[ update river ]");
 			API.instance.getAllWampums(function(data:Vector.<Wampum>):void {
 				_engine.setWampums(data);
 			});
