@@ -10,8 +10,8 @@ package com.casusludi.wampigraph.app.engine {
 	public class Engine 
 	{
 		private var _rendering:DisplayObjectContainer;
-		private var _stock:Vector.<WampumRendering>;
-		private var _waitingElements:Vector.<WampumRendering>;
+		private var _stock:Vector.<Wampum>;
+		private var _waitingElements:Vector.<Wampum>;
 		private var _stockIndex:int;
 		private var _renderingList:Vector.<WampumRendering>;
 		private var _speedXPerUpdate:Number;
@@ -26,8 +26,8 @@ package com.casusludi.wampigraph.app.engine {
 			_speedXPerUpdate = 0.5;
 			_rendering = new Sprite();
 			_renderingList = new Vector.<WampumRendering>();
-			_stock = new Vector.<WampumRendering>();
-			_waitingElements = new Vector.<WampumRendering>();
+			_stock = new Vector.<Wampum>();
+			_waitingElements = new Vector.<Wampum>();
 			_stockIndex = 0;
 		}
 		
@@ -35,7 +35,7 @@ package com.casusludi.wampigraph.app.engine {
 			_waitingElements.splice(0, int.MAX_VALUE);
 			for (var i:int = 0, c:int = pWampums.length; i < c; i++) {
 				try{
-				_waitingElements.push(new WampumRendering(pWampums[i]));
+				_waitingElements.push(pWampums[i]);
 				}catch (e:Error) {
 					//cqpx_fatal("error on this wampum : "+pWampums[i]);
 					//cqpx_fatal(e.getStackTrace());
@@ -60,9 +60,11 @@ package com.casusludi.wampigraph.app.engine {
 					item.x = int(item.posX + 0.5);
 					
 				}else {
+					
 					_rendering.removeChild(item);
 					_renderingList.splice(i, 1);
 					c = _renderingList.length;
+					item._rawRendering.dispose();
 				}
 			}
 			
@@ -94,7 +96,7 @@ package com.casusludi.wampigraph.app.engine {
 			// si le stock n'est pas vide
 			if (stockSize > 0) {
 				// alors on ajoute le wampum courant dans la riviere
-				newItem = _stock[_stockIndex];
+				newItem = new WampumRendering(_stock[_stockIndex]);
 				_renderingList.push(newItem);
 				_rendering.addChild(newItem);
 			}

@@ -14,8 +14,8 @@ package com.casusludi.wampigraph.app.engine
 	public class WampumRendering extends Sprite
 	{
 		
-		private var _data:Wampum;
-		private var _rawRendering:WampumRawRendering;
+		public var _data:Wampum;
+		internal var _rawRendering:WampumRawRendering;
 		private var _label:TLFTextField;
 		public var alive:Boolean;
 		public var posX:Number = 0;
