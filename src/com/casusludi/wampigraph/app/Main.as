@@ -38,7 +38,7 @@ package com.casusludi.wampigraph.app
 		{
 			this.stage.scaleMode = StageScaleMode.NO_SCALE;
 			
-		trace(File.applicationStorageDirectory);
+			trace(File.applicationStorageDirectory);
 			
 			// initialise le gestionnaire de log par defaut
 			DefaultLoggerSystem.instance.init(this);	
